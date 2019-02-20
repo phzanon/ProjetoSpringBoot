@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h1>Evento</h1>
-	<h3><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista de Eventos</a></h3>
+	<h3><a href="/evento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista de Eventos</a></h3>
 	
 	<div th:each="evento : ${evento}" class="container">
 		<div class="row">
@@ -38,12 +38,14 @@
 			<tr>
 				<th>Nome</th>
 				<th>RG</th>
+				<th>Apagar</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="convidado : ${convidados}">
 				<td><span th:text="${convidado.nomeConvidado}"></span></td>
 				<td><span th:text="${convidado.rg}"></span></td>
+				<td><a th:href="${(#mvc.url('EC#apagar').arg(0, convidado.rg)).build()}" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i></a></td>
 			</tr>
 		</tbody>
 	</table>

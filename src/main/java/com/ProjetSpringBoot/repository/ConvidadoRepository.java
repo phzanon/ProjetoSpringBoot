@@ -7,4 +7,6 @@ import com.ProjetSpringBoot.models.Evento;
 
 public interface ConvidadoRepository extends CrudRepository<Convidado, String>{
 	Iterable<Convidado> findByEvento(Evento evento);
+	
+	Convidado findByrg(String rg);
 }

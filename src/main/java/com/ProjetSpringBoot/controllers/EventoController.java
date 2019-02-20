@@ -1,4 +1,6 @@
-package com.ProjetSpringBoot.controllers;
+/*package com.ProjetSpringBoot.controllers;
+
+import java.util.ArrayList;
 
 import javax.validation.Valid;
 
@@ -45,7 +47,7 @@ public class EventoController {
 		return "redirect:/cadastrarEvento";
 	}
 	
-	@RequestMapping("/")
+	@RequestMapping("/evento")
 	public ModelAndView listaEventos() { 
 		ModelAndView mv = new ModelAndView("index");
 		Iterable<Evento> eventos = er.findAll();
@@ -64,6 +66,22 @@ public class EventoController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/deletarEvento") 
+	public String deletarEvento(long codigo) {
+		Evento evento = er.findByCodigo(codigo);
+		
+		Iterable<Convidado> convidados =  cr.findByEvento(evento);
+		
+		for(Convidado convidado : convidados) {
+			cr.delete(convidado);
+		}
+		
+		er.delete(evento);
+		return "redirect:/evento";
+	}
+	 
+	
+	
 	
 	@RequestMapping(value="/{codigo}", method=RequestMethod.POST)
 	public String detalhesEvento(@PathVariable("codigo") long codigo, @Valid Convidado convidado, BindingResult result, RedirectAttributes attributes) {
@@ -74,10 +92,20 @@ public class EventoController {
 		}
 		
 		
-		Evento evento = er.findByCodigo(codigo);
+		Evento evento = er.findByCodigo(codigo); 
 		convidado.setEvento(evento);
 		cr.save(convidado);
 		attributes.addFlashAttribute("mensagem", "Convidado adicionado com sucesso!");
 		return "redirect:/{codigo}";
 	}
+	
+	@RequestMapping(value="/apagar")
+	public String apagar(String rg) { 
+		Convidado convidado = cr.findByrg(rg); 
+		long numeroEvento = convidado.getEvento().getCodigo();
+		String teste = ""+numeroEvento;
+		cr.delete(convidado);
+		return "redirect:/evento/"+teste; 
+	}
 }
+*/

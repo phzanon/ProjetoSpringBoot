@@ -1,4 +1,4 @@
-package com.ProjetSpringBoot;
+package com.ProjetSpringBoot.config;
 
 import javax.sql.DataSource;
 
